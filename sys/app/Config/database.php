@@ -64,7 +64,7 @@ class DATABASE_CONFIG {
     public $default = array(
         'datasource' => 'Database/Mysql',
         'persistent' => false,
-        'host' => 'ec2-54-199-17-9.ap-northeast-1.compute.amazonaws.com',
+        'host' => 'localhost',
         'login' => 'root',
         'password' => 'solomon',
         'database' => 'shop_release_sc',

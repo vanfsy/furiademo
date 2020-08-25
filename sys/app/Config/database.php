@@ -67,7 +67,7 @@ class DATABASE_CONFIG {
         'host' => 'ec2-54-250-80-217.ap-northeast-1.compute.amazonaws.com',
         'login' => 'yoshida',
         'password' => 'solomon2020',
-        'database' => 'shop_release_sc',
+        'database' => 'release_shop_sc',
         'prefix' => '',
         'encoding' => 'utf8',
     );

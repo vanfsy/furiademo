@@ -64,9 +64,9 @@ class DATABASE_CONFIG {
     public $default = array(
         'datasource' => 'Database/Mysql',
         'persistent' => false,
-        'host' => '0.0.0.0',
-        'login' => 'root',
-        'password' => 'solomon',
+        'host' => 'ec2-54-250-80-217.ap-northeast-1.compute.amazonaws.com',
+        'login' => 'yoshida',
+        'password' => 'solomon2020',
         'database' => 'shop_release_sc',
         'prefix' => '',
         'encoding' => 'utf8',

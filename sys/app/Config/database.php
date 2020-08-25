@@ -64,10 +64,10 @@ class DATABASE_CONFIG {
     public $default = array(
         'datasource' => 'Database/Mysql',
         'persistent' => false,
-        'host' => 'mysql807b.xserver.jp',
-        'login' => 'oomaekunccb_nail',
-        'password' => 'jeuyFqP9Fa5',
-        'database' => 'oomaekunccb_furimademo',
+        'host' => 'localhost',
+        'login' => 'root',
+        'password' => 'solomon',
+        'database' => 'shop_release_sc',
         'prefix' => '',
         'encoding' => 'utf8',
     );

@@ -64,7 +64,7 @@ class DATABASE_CONFIG {
     public $default = array(
         'datasource' => 'Database/Mysql',
         'persistent' => false,
-        'host' => 'localhost',
+        'host' => '0.0.0.0',
         'login' => 'root',
         'password' => 'solomon',
         'database' => 'shop_release_sc',

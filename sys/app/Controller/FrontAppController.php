@@ -1,120 +1,86 @@
-<?php
-
-App::uses('CakeEmail', 'Network/Email');
-
-class FrontAppController extends AppController {
-
-    public $helpers = array('Form', 'Html', 'Time','Calendar','Image','UploadPack.Upload','FormElements','Cache','Paging');
-    public $uses = array('Item');
-
-    public $components = array(
-        'Session',
-        'Cookie',
-        'RequestHandler',
-        'Utility',
-        'Cart',
-        'Auth' => array(
-            // 認証時の設定
-            'authenticate' => array(
-                'Form' => array(
-                    // 認証時に使用するモデル
-                    'userModel' => 'Member',
-                    // 認証時に使用するモデルのユーザ名とパスワードの対象カラム
-                    'fields' => array('username' => 'user_id' , 'password'=>'password'),
-                    'scope' => array( 'Member.role' => array('user','admin'),'Member.status > ' => 0,'Member.status < ' => 4),
-                ),
-            ),
-            // ログイン失敗時に出力するメッセージを設定
-            'loginError' => 'パスワードもしくはログインIDをご確認下さい。',
-            // ログインしていない場合のメッセージを設定
-            'authError' => 'ご利用されるにはログインが必要です。',
-            // ログインに使用するアクションを指定
-            'loginAction' => array('controller' => 'mypage', 'action' => 'login'),
-            // ログイン後のリダイレクト先を指定
-            'loginRedirect' => array('controller' => 'mypage', 'action' => 'index'),
-            // ログアウト後のリダイレクト先を指定
-            'logoutRedirect' => array('controller' => 'mypage', 'action' => 'login'),
-        ),
-    );
-
-    var $ext = '.html';
-
-    //ver2.4
-    public function beforeFilter() {
-
-        $this->set('root_url',FULL_BASE_URL.'/');
-
-        // マスターデータ取得
-        $this->arrMasterData = $this->Utility->getMasterData();
-        $this->set('arrMasterData',$this->arrMasterData);
-
-        //Copyright
-        $this->crYear = date('Y');
-
-        // 検索キーワード
-        $keywords = 'キーワードで探す';
-        if(isset($this->request->query['keywords'])){
-            $keywords = $this->request->query['keywords'];
-        }
-        $this->set('search_keyword',$keywords);
-
-        $this->set('isMobile', $this->RequestHandler->isMobile());
-
-        $this->auth_user = $this->Auth->user();
-        //exit;
-        $this->user_id = $this->auth_user['id'];
-        $this->login_name = $this->auth_user['user_id'];
-        $this->user_role = $this->auth_user['role'];
-        $this->set('login_member_id',$this->user_id);
-        $this->set('loginname',$this->login_name);
-        $this->set('user_role',$this->user_role);
-
-        // ピックアップ情報
-        $arrPickUp = $this->Item->getPickUpEntity();
-        $this->set('arrPickUp',$arrPickUp);
-
-        // タグ情報
-        $arrTags = $this->Item->geTagList(10);
-        $this->set('arrTagList',$arrTags);
-
-        if(!empty($this->user_role) && !in_array($this->user_role, array('user', 'admin'))){
-            $this->Auth->logout();
-            $this->redirect('/');
-        }
-        $this->layout = 'kimonon';
-    }
-
-    // 非ページ管理の静的ページの処理
-    function page($dir,$page,$param1 = null,$param2 = null,$param3 = null) {
-
-        global $render_name;
-        $this->render(null,null,$render_name);
-
-    }
-
-    function getTopicPath() {
-/*
-        global $slug;
-        $this->loadModel('PageContents');
-        return $this->PageContent->getTopicPath($slug," | ");
- *
- */
-
-    }
-
-    // メール送信メソッド
-    protected function sendMail($mailData, $mailTo, $viewVars) {
-        $Email = new CakeEmail();
-        if (Configure::read('debug') == '2') {
-            $Email->config(array('log' => 'mail_sent'));
-        }
-        $Email->template($mailData['templete'])
-            ->emailFormat('html')
-            ->viewVars($viewVars)
-            //->from(array(Configure::read('info.sendDomain') => 'fillmall'))
-            ->from(array(Configure::read('info.sendDomain') => Configure::read('info.siteName')))
-            ->to($mailTo)
-            ->subject($mailData['subject'])
-            ->send();
-    }
-}
+<?php //004fb
+if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo("Site error: the ".(php_sapi_name()=='cli'?'ionCube':'<a href="http://www.ioncube.com">ionCube</a>')." PHP Loader needs to be installed. This is a widely used PHP extension for running ionCube protected PHP code, website security and malware blocking.\n\nPlease visit ".(php_sapi_name()=='cli'?'get-loader.ioncube.com':'<a href="http://get-loader.ioncube.com">get-loader.ioncube.com</a>')." for install assistance.\n\n");exit(199);
+?>
+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
